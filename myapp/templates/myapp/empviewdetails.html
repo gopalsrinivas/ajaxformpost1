@@ -1,0 +1,34 @@
+{% extends 'myapp/base.html' %}
+<title>{% block title %}Employee Details | {{empdetails.name}}{% endblock title %}</title>
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="alert-danger text-center p-3">Candidate Resume Uploader</h1>
+        <div class="shadow" style="padding:3em">
+            <p><a href="{{request.META.HTTP_REFERER}}" class="float-end btn btn-warning">Back to Home</a></p>
+            <p class="pt-5 float-end">Application No: {{empdetails.id}}</p><br/>
+            {% if empdetails.emp_img.url is not null %}
+               <p class="pt-5 float-end"><img style="width:120px; height:120px;" src="{{empdetails.emp_img.url}}" class="img-fluid img-thubnail float-end mt-1" alt="{{empdetails.name}}"></p>
+            {% else %}
+               <p class="pt-5 float-end"><img style="width:50%;height:50%;" src="/media/emp_pic/default_img.png" class="img-fluid img-thubnail float-end mt-1" alt="default img"></p>
+            {% endif %}
+
+            <p>Name: {{empdetails.name}}</p>
+            <p>Email: {{empdetails.email}}</p>
+            <p>Mobile Number: {{empdetails.mobile}}</p>
+            <p>Gender: {{empdetails.gender}}</p>
+            <p>Country: {{empdetails.country}}</p>
+            <p>State: {{empdetails.state}}</p>
+            <p>District: {{empdetails.district}}</p>
+            <p>Preferred Job Location: {{empdetails.prejoblocation}}</p>
+            <p>Employee Status: {{empdetails.is_active}}</p>
+            <p>Created_at: {{empdetails.created_at | date:"d-M-Y H:i:s"}}</p>
+            <p>Resume : <a href="{{empdetails.emp_app.url}}">Download</a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
